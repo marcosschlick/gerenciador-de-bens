@@ -4,10 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public record AssetResponseDTO(Long id, int assetCode, String description, AssetType type, LocalDate acquisitionDate,
-		BigDecimal value, AssetStatus status, Long departmentId) {
+		BigDecimal value, AssetStatus status, String departmentName) {
 
 	public AssetResponseDTO(Asset asset) {
 		this(asset.getId(), asset.getAssetCode(), asset.getDescription(), asset.getType(), asset.getAcquisitionDate(),
-				asset.getValue(), asset.getStatus(), asset.getDepartment().getId());
+				asset.getValue(), asset.getStatus(), asset.getDepartment().getName());
 	}
 }
