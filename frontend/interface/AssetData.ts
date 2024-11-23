@@ -29,3 +29,5 @@ export interface AssetData {
     value: number;
     status: AssetStatus;
 }
+
+

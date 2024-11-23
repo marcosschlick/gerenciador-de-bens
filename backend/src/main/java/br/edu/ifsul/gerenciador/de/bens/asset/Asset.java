@@ -3,6 +3,7 @@ package br.edu.ifsul.gerenciador.de.bens.asset;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import br.edu.ifsul.gerenciador.de.bens.department.Department;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,6 +11,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -40,12 +43,16 @@ public class Asset {
 	@Column(nullable = false)
 	private AssetStatus status;
 
+	@ManyToOne
+	@JoinColumn(name = "department_id", referencedColumnName = "id")
+	private Department department;
+
 	public Asset() {
 		super();
 	}
-
+	
 	public Asset(int assetCode, String description, AssetType type, LocalDate acquisitionDate, BigDecimal value,
-			AssetStatus status) {
+			AssetStatus status, Department department) {
 		super();
 		this.assetCode = assetCode;
 		this.description = description;
@@ -53,6 +60,7 @@ public class Asset {
 		this.acquisitionDate = acquisitionDate;
 		this.value = value;
 		this.status = status;
+		this.department = department;
 	}
 
 	public Long getId() {
@@ -111,12 +119,21 @@ public class Asset {
 		this.status = status;
 	}
 
-	public Asset(AssetRequestDTO data) {
+	public Department getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+
+	public Asset(AssetRequestDTO data, Department department) {
 		this.assetCode = data.assetCode();
 		this.description = data.description();
 		this.type = data.type();
 		this.acquisitionDate = data.acquisitionDate();
 		this.value = data.value();
 		this.status = data.status();
+		this.department = department;
 	}
 }

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import './App.css'
-import { AssetList } from "../components/asset-list/AssetList.tsx";
 import { useAssetData } from "../hooks/useAssetData";
 
 const App = () => {
@@ -19,7 +18,6 @@ const App = () => {
             <button onClick={goToUserRegistration} style={buttonStyle}>
               Cadastro de Usuários
             </button>
-
           </div>
           <div>
             <button onClick={goToItemList} style={buttonStyle}>
@@ -40,16 +38,31 @@ const App = () => {
       {view === "items" && (
         <div>
           <h2>Lista de Itens</h2>
-          {data?.map(assetData =>
-              <AssetList
-                assetCode={assetData.assetCode}
-                description={assetData.description}
-                type={assetData.type}
-                acquisitionDate={assetData.acquisitionDate}
-                value={assetData.value}
-                status={assetData.status}
-              />
-            )}
+          <table className="asset-list">
+            <thead>
+              <tr>
+                <th>Código do Bem</th>
+                <th>Descrição</th>
+                <th>Tipo</th>
+                <th>Data de Aquisição</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th>Departamento</th>
+              </tr>
+            </thead>
+            <tbody>
+              {data?.map(assetData => (
+                <tr key={assetData.assetCode}>
+                  <td>{assetData.assetCode}</td>
+                  <td>{assetData.description}</td>
+                  <td>{assetData.type}</td>
+                  <td>{assetData.acquisitionDate}</td>
+                  <td>{assetData.value.toFixed(2)}</td>
+                  <td>{assetData.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <button onClick={() => setView("home")}>Voltar</button>
         </div>
       )}

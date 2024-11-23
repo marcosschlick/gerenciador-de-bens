@@ -8,6 +8,7 @@ interface ListProps {
   acquisitionDate: string;
   value: number;
   status: AssetStatus;
+
 }
 
 export function AssetList({
@@ -17,6 +18,7 @@ export function AssetList({
   acquisitionDate,
   value,
   status,
+
 }: ListProps) {
   return (
     <div className="asset-list">
@@ -29,6 +31,7 @@ export function AssetList({
             <th>Data de Aquisição</th>
             <th>Valor</th>
             <th>Status</th>
+            <th>Departamento</th>
           </tr>
         </thead>
         <tbody>
@@ -39,6 +42,7 @@ export function AssetList({
             <td>{acquisitionDate}</td>
             <td>{value.toFixed(2)}</td>
             <td>{status}</td>
+
           </tr>
         </tbody>
       </table>
