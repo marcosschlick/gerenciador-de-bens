@@ -1,0 +1,41 @@
+/* list.css */
+.asset-list {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #000; /* Fundo preto */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid #444; /* Cor de borda mais suave para fundo escuro */
+  color: #f0f0f0; /* Texto claro para contraste, mas não excessivamente brilhante */
+}
+
+th {
+  background-color: #333; /* Fundo mais escuro para o cabeçalho */
+  font-weight: bold;
+}
+
+td {
+  word-wrap: break-word;
+}
+
+table th, table td {
+  max-width: 200px; /* Limita o tamanho das colunas, se necessário */
+}
+
+tbody tr:nth-child(even) {
+  background-color: #222; /* Cor de fundo escura para linhas alternadas */
+}
+
+tbody tr:hover {
+  background-color: #444; /* Fundo mais claro quando o mouse passa sobre a linha */
+}

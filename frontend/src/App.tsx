@@ -1,35 +1,66 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from "react";
 import './App.css'
+import { AssetList } from "../components/asset-list/AssetList.tsx";
+import { useAssetData } from "../hooks/useAssetData";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [view, setView] = useState("home");
+  const goToUserRegistration = () => setView("register");
+  const goToItemList = () => setView("items");
+  const { data } = useAssetData();
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h1>Sistema Gerenciador de Bens</h1>
 
-export default App
+      {view === "home" && (
+        <div className="button-container" style={{ display: "flex", justifyContent: "center", gap: "20px" }}>
+          <div>
+            <button onClick={goToUserRegistration} style={buttonStyle}>
+              Cadastro de Usuários
+            </button>
+
+          </div>
+          <div>
+            <button onClick={goToItemList} style={buttonStyle}>
+              Lista de Itens
+            </button>
+          </div>
+        </div>
+      )}
+
+      {view === "register" && (
+        <div>
+          <h2>Cadastro de Usuários</h2>
+          <p>Aqui vai o formulário de cadastro.</p>
+          <button onClick={() => setView("home")}>Voltar</button>
+        </div>
+      )}
+
+      {view === "items" && (
+        <div>
+          <h2>Lista de Itens</h2>
+          {data?.map(assetData =>
+              <AssetList
+                assetCode={assetData.assetCode}
+                description={assetData.description}
+                type={assetData.type}
+                acquisitionDate={assetData.acquisitionDate}
+                value={assetData.value}
+                status={assetData.status}
+              />
+            )}
+          <button onClick={() => setView("home")}>Voltar</button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const buttonStyle = {
+  padding: "10px 20px",
+  fontSize: "16px",
+  cursor: "pointer",
+};
+
+export default App;
