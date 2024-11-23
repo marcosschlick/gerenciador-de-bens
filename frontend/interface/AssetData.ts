@@ -28,6 +28,7 @@ export interface AssetData {
     acquisitionDate: string;
     value: number;
     status: AssetStatus;
+    departmentName: string;
 }
 
 

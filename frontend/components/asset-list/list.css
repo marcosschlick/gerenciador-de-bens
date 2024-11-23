@@ -37,5 +37,6 @@ tbody tr:nth-child(even) {
 }
 
 tbody tr:hover {
-  background-color: #444; /* Fundo mais claro quando o mouse passa sobre a linha */
+  background-color: #444;
+  border: 1px solid #fff; /* Borda mais clara ao passar o mouse */
 }

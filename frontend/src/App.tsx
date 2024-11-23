@@ -1,5 +1,5 @@
 import { useState } from "react";
-import './App.css'
+import './App.css';
 import { useAssetData } from "../hooks/useAssetData";
 
 const App = () => {
@@ -59,6 +59,7 @@ const App = () => {
                   <td>{assetData.acquisitionDate}</td>
                   <td>{assetData.value.toFixed(2)}</td>
                   <td>{assetData.status}</td>
+                  <td>{assetData.departmentName}</td>
                 </tr>
               ))}
             </tbody>

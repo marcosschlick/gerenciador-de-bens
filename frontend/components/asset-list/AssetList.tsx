@@ -1,3 +1,4 @@
+import React from "react";
 import "./list.css";
 import { AssetType, AssetStatus } from "../../interface/AssetData";
 
@@ -8,7 +9,7 @@ interface ListProps {
   acquisitionDate: string;
   value: number;
   status: AssetStatus;
-
+  departmentName: string;
 }
 
 export function AssetList({
@@ -18,6 +19,7 @@ export function AssetList({
   acquisitionDate,
   value,
   status,
+  departmentName
 
 }: ListProps) {
   return (
@@ -42,7 +44,7 @@ export function AssetList({
             <td>{acquisitionDate}</td>
             <td>{value.toFixed(2)}</td>
             <td>{status}</td>
-
+            <td>{departmentName}</td>
           </tr>
         </tbody>
       </table>
